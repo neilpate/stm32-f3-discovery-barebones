@@ -79,7 +79,7 @@ fn setup_input_interrupt() -> () {
 
         // Connect EXTI0 line to Port A.0
         let exticr1 = &*(SYSCFG_EXTICR1_ADDR as *mut volatile_register::RW<u32>);
-        exticr1.modify(|r| r & 0b000); //Set lowest 3 bits 000 of SYSCFG_EXTICR1 to enable select Port A.0
+        exticr1.modify(|r| r & !0b111); //Set lowest 3 bits 000 of SYSCFG_EXTICR1 to enable select Port A.0
 
         // The pin needs to be set to an input, but this is the default after reset so no action needed
         // This is controlled by GPIOA_MODER
