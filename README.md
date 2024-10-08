@@ -22,3 +22,11 @@ When run from VSCode, the binary is built and then the cortex-debug extension (w
 When you press the User button the West LED (Green) will light.
 The switch is connected to Port A.0
 The LED is connected to Port E.15
+
+# Schematic 
+
+![image](https://github.com/user-attachments/assets/07dcba22-c1b5-420b-87cf-1f5f03ab0944)
+
+![image](https://github.com/user-attachments/assets/98ebd84d-acb2-41db-8b02-55962e2c9b04)
+
+
