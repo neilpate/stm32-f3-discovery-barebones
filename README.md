@@ -1,5 +1,5 @@
 # stm32-f3-discovery-barebones
-The most basic, (almost) dependency free example possible to start STM32 tinkering in rust with the Discovery F3 board. (https://www.st.com/en/evaluation-tools/stm32f3discovery.html)
+The most basic, (almost) dependency free example possible to start STM32 tinkering in rust with the F3 Discovery board. (https://www.st.com/en/evaluation-tools/stm32f3discovery.html)
 
 Most of the embedded rust tutorials start with the HAL type crates, and while these work fine they bring a lot of baggage with them. This makes it hard to understand exactly what is necessary to get started.
 
