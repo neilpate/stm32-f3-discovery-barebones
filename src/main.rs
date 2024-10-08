@@ -42,7 +42,7 @@ const NVIC_ISER0_OFFSET: u32 = 0x0; // Interrupt Set Enable
 
 const OUTPUT_PIN: i32 = 15; // On the STM32F3Discovery the West LED of the compass (green) is Port E.13
 
-fn setup_gpioe_pin_as_output(pin: i32) -> () {
+fn setup_gpioe_pin_as_output(pin: i32) {
     unsafe {
         // Enable the GPIOE peripheral
         let rcc_ahbenr = &*(RCC_AHBENR as *mut volatile_register::RW<u32>);
@@ -59,7 +59,7 @@ fn setup_gpioe_pin_as_output(pin: i32) -> () {
     }
 }
 
-fn setup_gpioa_pin_as_input() -> () {
+fn setup_gpioa_pin_as_input() {
     // On the STM32F3Discovery the USER pushbutton is connected to Port A.0
 
     unsafe {
@@ -71,7 +71,7 @@ fn setup_gpioa_pin_as_input() -> () {
     }
 }
 
-fn setup_input_interrupt() -> () {
+fn setup_input_interrupt() {
     unsafe {
         // Enable the clock to the SYSCFG peripheral
         let ahb2enr = &*(RCC_AHB2ENR as *mut volatile_register::RW<u32>);
@@ -110,7 +110,7 @@ fn setup_input_interrupt() -> () {
     }
 }
 
-fn set_led_on(pin: i32) -> () {
+fn set_led_on(pin: i32) {
     unsafe {
         // BSRR is the register used to set or clear individual pins
         let bsrr = &*(GPIOE_BSRR_ADDR as *mut volatile_register::RW<u32>);
@@ -118,11 +118,11 @@ fn set_led_on(pin: i32) -> () {
     }
 }
 
-fn set_led_off(pin: i32) -> () {
+fn set_led_off(pin: i32) {
     unsafe {
         // BSRR is the register used to set or clear individual pins
         let bsrr = &*(GPIOE_BSRR_ADDR as *mut volatile_register::RW<u32>);
-        bsrr.write(1 << 16 + pin); // A pin is cleared by setting the bit in the top 16 bits of the BSRR
+        bsrr.write(1 << (16 + pin)); // A pin is cleared by setting the bit in the top 16 bits of the BSRR
     }
 }
 
