@@ -1,6 +1,7 @@
 #![no_std]
 #![no_main]
 
+use cortex_m::{iprintln, Peripherals};
 use cortex_m_rt::entry;
 use panic_halt as _;
 use stm32f3::stm32f303::interrupt;
@@ -156,11 +157,18 @@ fn EXTI0() {
 
 #[entry]
 fn main() -> ! {
+    let mut p = Peripherals::take().unwrap();
+    let stim = &mut p.ITM.stim[0];
+
     setup_gpioe_pin_as_output(OUTPUT_PIN); // There are 8 LED outputs connected to Port E.8 --> 15. Change OUTPUT_PIN to use a different LED
 
     setup_gpioa_pin_as_input(); // On the STM32F3Discovery the USER pushbutton is connected to Port A.0
 
     setup_input_interrupt();
 
-    loop {}
+    let mut i = 0;
+    loop {
+        iprintln!(stim, "Hello, world! {}", i);
+        i += 1;
+    }
 }
