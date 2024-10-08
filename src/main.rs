@@ -40,7 +40,7 @@ const EXTI_PR1_OFFSET: u32 = 0x14; // Pending
 const NVIC_ADDR: u32 = 0xe000_e100;
 const NVIC_ISER0_OFFSET: u32 = 0x0; // Interrupt Set Enable
 
-const OUTPUT_PIN: i32 = 13; // On the STM32F3Discovery the West LED of the compass (green) is Port E.13
+const OUTPUT_PIN: i32 = 15; // On the STM32F3Discovery the West LED of the compass (green) is Port E.13
 
 fn setup_gpioe_pin_as_output(pin: i32) -> () {
     unsafe {
