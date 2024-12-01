@@ -8,8 +8,11 @@ The intention of this repo is to try and provide an as simple as possible exampl
 It is assumed that VSCode will be used as the editor.
 
 # Requirements
-- cortex-debug extension for VSCode
-- OpenOCD
+Follow the instructions from here: https://docs.rust-embedded.org/book/intro/install.html
+
+- rust Cortex-M4F target ('rustup target add thumbv7em-none-eabihf')
+- cortex-debug extension for VSCode (install from inside VS Code)
+- OpenOCD (https://github.com/xpack-dev-tools/openocd-xpack/releases/tag/v0.12.0-4). Download release and extract to, for example, C:\Users\username\AppData\Roaming\xPacks\openocd\xpack-openocd-0.11.0-5\
 - GDB for ARM
 
 # Running it!
