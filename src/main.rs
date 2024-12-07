@@ -6,6 +6,8 @@ use cortex_m_rt::entry;
 use panic_halt as _;
 use stm32f3::stm32f303::interrupt;
 
+static mut STATE: bool = false;
+
 // Reset & Clock Control
 const RCC_ADDR: u32 = 0x4002_1000;
 const RCC_AHBENR_OFFSET: u32 = 0x14; // Advanced High Performance Bus Enable Register
@@ -140,15 +142,23 @@ fn read_input() -> bool {
 
 #[interrupt]
 fn EXTI0() {
+    let curr_state;
+
     unsafe {
         // PR1 is the Pending Registers, which indicates which triggers have occurred
         let exti_pr1 = &*((EXTI_ADDR + EXTI_PR1_OFFSET) as *mut volatile_register::RW<u32>);
         exti_pr1.modify(|r| (r | 0x1)); // Set the bit to clear the pending interrupt
+
+        // On every press of the button we want to toggle all the LEDs
+        let switch_pressed = read_input();
+
+        if switch_pressed {
+            STATE = !STATE;
+        }
+        curr_state = STATE;
     }
 
-    let switch_pressed = read_input();
-
-    if switch_pressed {
+    if curr_state {
         set_led_on(OUTPUT_PIN);
     } else {
         set_led_off(OUTPUT_PIN);
