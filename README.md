@@ -1,3 +1,5 @@
+# UPDATE: For a more comprehensive view, check out this: https://github.com/neilpate/rustybits
+
 # stm32-f3-discovery-barebones
 The most basic, (almost) dependency free example possible to start STM32 tinkering in rust with the F3 Discovery board. (https://www.st.com/en/evaluation-tools/stm32f3discovery.html)
 
